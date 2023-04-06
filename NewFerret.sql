@@ -17,11 +17,11 @@ nome varchar(60) not null,
 email varchar(60) not null,
 senha varchar(50) not null,
 NiveldeAcesso VARCHAR(10) NULL, --ADM, USER
-foto varbinary(max) null,
 tel varchar(20) not NULL,
 Status_usuario VARCHAR(20) not null,
 primary key (id),
 )
+
 
 create table projeto
 (
@@ -32,8 +32,7 @@ create table projeto
  descricao varchar(1000) not null,
  data_inicio smalldatetime not null,
  data_fim smalldatetime not null,
- tarefas varchar(max) not null,
- link varchar(200) not null,
+ link_projeto varchar(200) not null,
  primary key(id),
  foreign key(usuario_id) references usuario(id)
 )
@@ -92,3 +91,29 @@ create table Grafico -- Standby no momento
  primary key(id),
  foreign key(projeto_id) references projeto(id)
 )
+
+--- Inserts de exemplo
+
+Insert into usuario(nome, email, senha, NiveldeAcesso ,tel, Status_usuario)
+values ('Geek', 'gabrielzeferino883@gmail.com', 'LongLivefortheKing', 'adm', '11966935903', 'ativo');
+go
+
+Insert into usuario(nome, email, senha, NiveldeAcesso ,tel, Status_usuario)
+values ('gui', 'guilhermeguerra@gmail.com', 'zorocdr123', 'user', '11976423487', 'ativo')
+go
+
+Insert into projeto (usuario_id, titulo, quant_membros, descricao, data_inicio, data_fim, link_projeto)
+values ('1', 'Ferret', 6 ,'sistema de gerenciamento de projetos', 03/04/2022, 10/10/2023, 'ferretlink.com.br/teste');
+go
+
+insert into postagem (usuario_id, data_post,conteudo,status_post)
+values ('1', 05/04/2023,'Reunião no teams as 16:00, segue o link:-', 'true')
+go
+
+insert into aviso (usuario_id, conteudo_mensagem, status_comentario, momentodeenvio)
+values ('1', 'Caro amigo guilherme, devido a sua falta na reunião venho pedir para que me mande mensagem pelo whattsap e envie seu relatorio', 'true', 06/04/2023)
+go
+
+insert into Tarefa_Kanban (projeto_id, titulo, subtarefa, estado_tarefa)
+values('1', 'criar telas web', 'Criar tela de projeto', 'true')
+go
