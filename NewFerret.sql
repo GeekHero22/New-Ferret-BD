@@ -31,8 +31,7 @@ create table projeto
  quant_membros int not null,
  descricao varchar(1000) not null,
  data_inicio smalldatetime not null,
- data_fim smalldatetime not null,
- link_projeto varchar(200) not null,
+ periodo_estimado_de_termino int not null,
  primary key(id),
  foreign key(usuario_id) references usuario(id)
 )
@@ -78,7 +77,7 @@ id int identity not null,
 projeto_id int not null,
 titulo varchar(30) not null,
 subtarefa varchar(50) null,
-estado_tarefa bit not null, --Feita ou n„o feita
+estado_tarefa bit not null, --Feita ou n√£o feita
 primary key (id),
 foreign key (projeto_id) references projeto(id)
 )
@@ -107,11 +106,11 @@ values ('1', 'Ferret', 6 ,'sistema de gerenciamento de projetos', 03/04/2022, 10
 go
 
 insert into postagem (usuario_id, data_post,conteudo,status_post)
-values ('1', 05/04/2023,'Reuni„o no teams as 16:00, segue o link:-', 'true')
+values ('1', 05/04/2023,'Reuni√£o no teams as 16:00, segue o link:-', 'true')
 go
 
 insert into aviso (usuario_id, conteudo_mensagem, status_comentario, momentodeenvio)
-values ('1', 'Caro amigo guilherme, devido a sua falta na reuni„o venho pedir para que me mande mensagem pelo whattsap e envie seu relatorio', 'true', 06/04/2023)
+values ('1', 'Caro amigo guilherme, devido a sua falta na reuni√£o venho pedir para que me mande mensagem pelo whattsap e envie seu relatorio', 'true', 06/04/2023)
 go
 
 insert into Tarefa_Kanban (projeto_id, titulo, subtarefa, estado_tarefa)
